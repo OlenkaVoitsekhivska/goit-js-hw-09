@@ -11,34 +11,42 @@ const secRef = document.querySelector('[data-seconds]');
 const btn = document.querySelector('[data-start]');
 btn.setAttribute('disabled', 'disabled');
 
+
 Notiflix.Notify.info('Pick a date');
 
 const options = {
-    enableTime: true,
-    time_24hr: true,
-    defaultDate: new Date(),
-    minuteIncrement: 1,
+  enableTime: true,
+  time_24hr: true,
+  defaultDate: new Date(),
+  minuteIncrement: 1,
 
-    onClose(selectedDates) {   
+  onClose(selectedDates) {   
     if(selectedDates[0]-options.defaultDate>0){
         const THE_DATE = selectedDates[0];
         btn.removeAttribute('disabled'); 
+
         btn.addEventListener('click', ()=>{
+          btn.setAttribute('disabled', 'disabled');
           Notiflix.Notify.success('Date successfully selected.Commencing the countdown');
-            setInterval(()=>{
-            const diff = THE_DATE.getTime()-Date.now();
-              if(diff>=0){
-                const {days, hours, minutes, seconds } = convertMs(diff);
-                dayRef.textContent = days, hourRef.textContent = hours, minRef.textContent = minutes, secRef.textContent = seconds;
-              } return;
-            },1000)
-          }
-          )}    
+         
+        setInterval(()=>{
+          const diff = THE_DATE.getTime()-Date.now();
+            if(diff>=0){
+              const {days, hours, minutes, seconds } = convertMs(diff);
+              dayRef.textContent = days, hourRef.textContent = hours, minRef.textContent = minutes, secRef.textContent = seconds;
+            } else {
+              btn.removeAttribute('disabled'); 
+              return};
+
+          },1000);
+           
+        })}   
+
     else{
       Notiflix.Notify.failure("Please choose a date in the future");
     } 
-    },
-  };
+  },
+};
 
 
   const timeInput = document.querySelector('#datetime-picker');

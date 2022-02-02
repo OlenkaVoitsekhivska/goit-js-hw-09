@@ -13,9 +13,11 @@ function getRandomHexColor() {
 
     function changeColor(){
       intervalId = setInterval(()=>{
-        bodyRef.style.background = getRandomHexColor()
+        bodyRef.style.background = getRandomHexColor();
+        startBtnRef.setAttribute('disabled', 'disabled')
         },1000)
     }
     function stopChangeColor(){
         clearInterval(intervalId);
+        startBtnRef.removeAttribute('disabled');
     }
