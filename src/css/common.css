@@ -20,12 +20,13 @@ img {
 .timer{
   margin-top: 50px;
   display: flex;
-  justify-content: space-evenly;
+
 }
 .field{
   display:flex;
   flex-direction: column;
   align-items: center;
+  margin:30px;
 }
 .value{
   font-size: 45px;
