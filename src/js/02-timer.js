@@ -25,7 +25,7 @@ const options = {
         btn.removeAttribute('disabled'); 
         btn.addEventListener('click', ()=>{
           Notiflix.Notify.success('Date successfully selected.Commencing the countdown');
-          setInterval(()=>{
+            setInterval(()=>{
             const diff = THE_DATE.getTime()-Date.now();
               if(diff>=0){
                 const {days, hours, minutes, seconds } = convertMs(diff);
